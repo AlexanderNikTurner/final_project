@@ -658,7 +658,8 @@ class MainWindow(QMainWindow):
                 return
             else:
                 self.fuse_final = Fuse(self.final_fuse_name, *self.fuse_to_check)
-        self.current_type = self.box_el4.currentText()
+
+        self.type_of_current = self.box_el4.currentText()
 
         """  
         Вариант 1: батарея - кабель - автомат
@@ -670,18 +671,19 @@ class MainWindow(QMainWindow):
         """
 
         if self.chosen_scheme == 'Вариант 1':
-            calculation(self.bat_final, self.cab_final, self.current_type, breaker=self.br_final)
+            self.calc = calculation(self.bat_final, self.cab_final, self.type_of_current, breaker=self.br_final)
+            self.window_final = WindowFinalCalc(self.calc)
+            self.window_final.show()
 
-        # Реализуем функцию calculation в модуле calc_calculation.
-        # Забираем из нее список данных. Вариант схемы, вид КЗ, рассчитанный ток КЗ,
-        # время отключения, что с батареей, кабелем, не сгорел ли автомат - не превысил ли ток в 100 раз
-        # отсечку.
-        # Далее здесь выводим окно виджет (нужно будет пересоздать новый класс Widget)
-        # И в него вывести результаты расчета.
-        # И там далее кнопка записать результат в файл, вернуться к схеме, завершить и выйти.
+        if self.chosen_scheme == 'Вариант 2':
+            self.calc = calculation(self.bat_final, self.cab_final, self.type_of_current, fuse=self.fuse_final)
+            self.window_final = WindowFinalCalc(self.calc)
+            self.window_final.show()
 
-        print('РАБОТАЕТ!')
-
+        if self.chosen_scheme == 'Вариант 3':
+            self.calc = calculation(self.bat_final, self.cab_final, self.type_of_current, fuse=self.fuse_final)
+            self.window_final = WindowFinalCalc(self.calc)
+            self.window_final.show()
 
     # Функция, которая определит какие данные мы должны взять для расчета -
     # те, что пользователь задал вручную или из базы. Чтобы у пользователя
@@ -1021,3 +1023,19 @@ class WindowErrInParams(QWidget):
         self.layout.addWidget(self.button, Qt.AlignmentFlag.AlignCenter)
         self.setLayout(self.layout)
         self.button.clicked.connect(self.close)  # type: ignore
+
+class WindowFinalCalc(QWidget):
+    def __init__(self, result):
+        super().__init__()
+        self.setGeometry(300, 300, 250, 250)
+        self.setWindowTitle('Результаты расчета')
+        self.layout = QVBoxLayout()
+        self.setLayout(self.layout)
+
+        self.result = '\n'.join(result)
+        self.label = QLabel(self.result)
+        self.layout.addWidget(self.label, Qt.AlignmentFlag.AlignCenter)
+
+        self.button1 = QPushButton('Вернуться к схеме')
+        self.layout.addWidget(self.button1, Qt.AlignmentFlag.AlignCenter)
+        self.button1.clicked.connect(self.close)  # type: ignore
