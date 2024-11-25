@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def create_batteries_database():
     connection = sqlite3.connect('batteries_database.db')
     cursor = connection.cursor()
@@ -33,6 +34,7 @@ def create_breakers_database():
     connection.commit()
     connection.close()
 
+
 def create_fuses_database():
     connection = sqlite3.connect('fuses_database.db')
     cursor = connection.cursor()
@@ -48,6 +50,7 @@ def create_fuses_database():
 
     connection.commit()
     connection.close()
+
 
 def create_cables_database():
     connection = sqlite3.connect('cables_database.db')

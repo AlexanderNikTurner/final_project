@@ -2,6 +2,10 @@ import sqlite3
 
 
 class BatteriesDataBase:
+    """
+    Класс для работы с базой аккумуляторных батарей.
+
+    """
 
     @staticmethod
     def add(battery_type: str, voltage: float, resistance: float):
@@ -16,7 +20,8 @@ class BatteriesDataBase:
         connection = sqlite3.connect('batteries_database.db')
         cursor = connection.cursor()
         cursor.execute(
-            'INSERT INTO batteries (type, voltage, resistance) VALUES (?, ?, ?)',
+            'INSERT INTO batteries '
+            '(type, voltage, resistance) VALUES (?, ?, ?)',
             (battery_type, voltage, resistance)
         )
         connection.commit()
@@ -25,7 +30,7 @@ class BatteriesDataBase:
     @staticmethod
     def get(battery_type: str) -> tuple:
         """
-        Получает номера телефона и id пользователя по имени пользователя.
+        Получает данные батареи по ее типу.
         Args:
             battery_type: Тип батареи.
 
@@ -65,8 +70,10 @@ class BatteriesDataBase:
         Обновляет запись по типу батареи.
         Args:
             battery_type: Тип аккумуляторной батареи для обновления.
-            voltage: Напряжение аккумуляторной батареи, которое требуется обновить.
-            resistance: Сопротивление аккумуляторной батареи, которое требуется обновить.
+            voltage: Напряжение аккумуляторной батареи, которое
+            требуется обновить.
+            resistance: Сопротивление аккумуляторной батареи, которое
+            требуется обновить.
 
         """
         connection = sqlite3.connect('batteries_database.db')
@@ -82,10 +89,12 @@ class BatteriesDataBase:
     @staticmethod
     def get_all() -> list:
         """
-        Получает полный список батарей в виде кортежей (type, voltage, resistance).
+        Получает полный список батарей в виде кортежей (type,
+        voltage, resistance).
 
         Returns:
-            Список записей в виде кортежей (type, voltage, resistance).
+            Список записей в виде кортежей (type, voltage,
+            resistance).
 
         """
         connection = sqlite3.connect('batteries_database.db')
@@ -96,9 +105,21 @@ class BatteriesDataBase:
 
 
 class CablesDataBase:
+    """
+    Класс для работы с базой кабелей.
+
+    """
 
     @staticmethod
     def add(cable_type: str, cross_section: float, length: float):
+        """
+        Добавляет кабель в базу.
+        Args:
+            cable_type: Тип кабеля.
+            cross_section: Сечение.
+            length: Длина.
+
+        """
         connection = sqlite3.connect('cables_database.db')
         cursor = connection.cursor()
         cursor.execute(
@@ -144,13 +165,6 @@ class CablesDataBase:
 
     @staticmethod
     def get_all() -> list:
-        """
-        Получает полный список батарей в виде кортежей (type, voltage, resistance).
-
-        Returns:
-            Список записей в виде кортежей (type, voltage, resistance).
-
-        """
         connection = sqlite3.connect('cables_database.db')
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM cables')
@@ -159,9 +173,21 @@ class CablesDataBase:
 
 
 class BreakersDataBase:
+    """
+    Класс для работы с базой выключателей.
+
+    """
 
     @staticmethod
     def add(breaker_type: str, ibreak: float, tbreak: float):
+        """
+        Добавляет выключатель в базу.
+        Args:
+            breaker_type: Тип выключателя.
+            ibreak: Ток срабатывания.
+            tbreak: Время срабатывания.
+
+        """
         connection = sqlite3.connect('breakers_database.db')
         cursor = connection.cursor()
         cursor.execute(
@@ -215,9 +241,21 @@ class BreakersDataBase:
 
 
 class FusesDataBase:
+    """
+    Класс для работы с базой предохранителей.
+
+    """
 
     @staticmethod
     def add(fuse_type: str, inom: float, tnom: float):
+        """
+        Добавляет предохранитель в базу.
+        Args:
+            fuse_type: Тип предохранителя.
+            inom: Ток предохранителя.
+            tnom: Время срабатывания предохранителя.
+
+        """
         connection = sqlite3.connect('fuses_database.db')
         cursor = connection.cursor()
         cursor.execute(
@@ -268,4 +306,3 @@ class FusesDataBase:
         cursor.execute('SELECT * FROM fuses')
         all_fuses = cursor.fetchall()
         return all_fuses
-
