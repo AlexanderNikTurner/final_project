@@ -44,19 +44,19 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.label_3, 1, 2)
 
         self.label_image_1 = QLabel(self)
-        self.image_1 = QPixmap('image_1.jpg')
+        self.image_1 = QPixmap('images/image_1.jpg')
         self.label_image_1.setPixmap(self.image_1)
         self.resize(self.image_1.width(), self.image_1.height())
         self.label_image_1.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label_image_2 = QLabel(self)
-        self.image_2 = QPixmap('image_2.jpg')
+        self.image_2 = QPixmap('images/image_2.jpg')
         self.label_image_2.setPixmap(self.image_2)
         self.resize(self.image_2.width(), self.image_2.height())
         self.label_image_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label_image_3 = QLabel(self)
-        self.image_3 = QPixmap('image_3.jpg')
+        self.image_3 = QPixmap('images/image_3.jpg')
         self.label_image_3.setPixmap(self.image_3)
         self.resize(self.image_3.width(), self.image_3.height())
         self.label_image_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -146,17 +146,17 @@ class MainWindow(QMainWindow):
         self.label_chosen_image = QLabel(self)
         match self.chosen_scheme:
             case 'Вариант 1':
-                self.chosen_image = QPixmap('image_1.jpg')
+                self.chosen_image = QPixmap('images/image_1.jpg')
                 self.set_battery(1)
                 self.set_cable(2)
                 self.set_breaker(3)
             case 'Вариант 2':
-                self.chosen_image = QPixmap('image_2.jpg')
+                self.chosen_image = QPixmap('images/image_2.jpg')
                 self.set_battery(1)
                 self.set_cable(2)
                 self.set_fuse(3)
             case 'Вариант 3':
-                self.chosen_image = QPixmap('image_3.jpg')
+                self.chosen_image = QPixmap('images/image_3.jpg')
                 self.set_battery(1)
                 self.set_fuse(2)
                 self.set_cable(3)
