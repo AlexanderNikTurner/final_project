@@ -2,7 +2,7 @@ import sqlite3
 
 
 def create_batteries_database():
-    connection = sqlite3.connect('batteries_database.db')
+    connection = sqlite3.connect('databases/batteries_database.db')
     cursor = connection.cursor()
 
     cursor.execute('''
@@ -19,7 +19,7 @@ def create_batteries_database():
 
 
 def create_breakers_database():
-    connection = sqlite3.connect('breakers_database.db')
+    connection = sqlite3.connect('databases/breakers_database.db')
     cursor = connection.cursor()
 
     cursor.execute('''
@@ -36,7 +36,7 @@ def create_breakers_database():
 
 
 def create_fuses_database():
-    connection = sqlite3.connect('fuses_database.db')
+    connection = sqlite3.connect('databases/fuses_database.db')
     cursor = connection.cursor()
 
     cursor.execute('''
@@ -53,7 +53,7 @@ def create_fuses_database():
 
 
 def create_cables_database():
-    connection = sqlite3.connect('cables_database.db')
+    connection = sqlite3.connect('databases/cables_database.db')
     cursor = connection.cursor()
 
     cursor.execute('''

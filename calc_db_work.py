@@ -17,7 +17,7 @@ class BatteriesDataBase:
             resistance: Сопротивление аккумуляторной батареи.
 
         """
-        connection = sqlite3.connect('batteries_database.db')
+        connection = sqlite3.connect('databases/batteries_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'INSERT INTO batteries '
@@ -38,7 +38,7 @@ class BatteriesDataBase:
             Тип, напряжение и сопротивление аккумуляторной батареи.
 
         """
-        connection = sqlite3.connect('batteries_database.db')
+        connection = sqlite3.connect('databases/batteries_database.db')
         cursor = connection.cursor()
         res = cursor.execute(
             'SELECT type, voltage, resistance FROM batteries WHERE type=?',
@@ -55,7 +55,7 @@ class BatteriesDataBase:
             battery_type: Тип батареи
 
         """
-        connection = sqlite3.connect('batteries_database.db')
+        connection = sqlite3.connect('databases/batteries_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'DELETE FROM batteries WHERE type=?',
@@ -76,7 +76,7 @@ class BatteriesDataBase:
             требуется обновить.
 
         """
-        connection = sqlite3.connect('batteries_database.db')
+        connection = sqlite3.connect('databases/batteries_database.db')
         cursor = connection.cursor()
         cursor.execute("""
            UPDATE batteries
@@ -97,7 +97,7 @@ class BatteriesDataBase:
             resistance).
 
         """
-        connection = sqlite3.connect('batteries_database.db')
+        connection = sqlite3.connect('databases/batteries_database.db')
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM batteries')
         all_batteries = cursor.fetchall()
@@ -120,7 +120,7 @@ class CablesDataBase:
             length: Длина.
 
         """
-        connection = sqlite3.connect('cables_database.db')
+        connection = sqlite3.connect('databases/cables_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'INSERT INTO cables (type, section, length) VALUES (?, ?, ?)',
@@ -131,7 +131,7 @@ class CablesDataBase:
 
     @staticmethod
     def get(cable_type: str) -> tuple:
-        connection = sqlite3.connect('cables_database.db')
+        connection = sqlite3.connect('databases/cables_database.db')
         cursor = connection.cursor()
         cable_res = cursor.execute(
             'SELECT type, section, length FROM cables WHERE type=?',
@@ -142,7 +142,7 @@ class CablesDataBase:
 
     @staticmethod
     def delete(cable_type: str):
-        connection = sqlite3.connect('cables_database.db')
+        connection = sqlite3.connect('databases/cables_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'DELETE FROM cables WHERE type=?',
@@ -153,7 +153,7 @@ class CablesDataBase:
 
     @staticmethod
     def update(cable_type: str, cross_section: float, length: float):
-        connection = sqlite3.connect('cables_database.db')
+        connection = sqlite3.connect('databases/cables_database.db')
         cursor = connection.cursor()
         cursor.execute("""
            UPDATE cables
@@ -165,7 +165,7 @@ class CablesDataBase:
 
     @staticmethod
     def get_all() -> list:
-        connection = sqlite3.connect('cables_database.db')
+        connection = sqlite3.connect('databases/cables_database.db')
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM cables')
         all_cables = cursor.fetchall()
@@ -188,7 +188,7 @@ class BreakersDataBase:
             tbreak: Время срабатывания.
 
         """
-        connection = sqlite3.connect('breakers_database.db')
+        connection = sqlite3.connect('databases/breakers_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'INSERT INTO breakers (type, ibreak, tbreak) VALUES (?, ?, ?)',
@@ -199,7 +199,7 @@ class BreakersDataBase:
 
     @staticmethod
     def get(breaker_type: str) -> tuple:
-        connection = sqlite3.connect('breakers_database.db')
+        connection = sqlite3.connect('databases/breakers_database.db')
         cursor = connection.cursor()
         breaker_res = cursor.execute(
             'SELECT type, ibreak, tbreak FROM breakers WHERE type=?',
@@ -210,7 +210,7 @@ class BreakersDataBase:
 
     @staticmethod
     def delete(breaker_type: str):
-        connection = sqlite3.connect('breakers_database.db')
+        connection = sqlite3.connect('databases/breakers_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'DELETE FROM breakers WHERE type=?',
@@ -221,7 +221,7 @@ class BreakersDataBase:
 
     @staticmethod
     def update(breaker_type: str, ibreak: float, tbreak: float):
-        connection = sqlite3.connect('breakers_database.db')
+        connection = sqlite3.connect('databases/breakers_database.db')
         cursor = connection.cursor()
         cursor.execute("""
            UPDATE breakers
@@ -233,7 +233,7 @@ class BreakersDataBase:
 
     @staticmethod
     def get_all() -> list:
-        connection = sqlite3.connect('breakers_database.db')
+        connection = sqlite3.connect('databases/breakers_database.db')
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM breakers')
         all_breakers = cursor.fetchall()
@@ -256,7 +256,7 @@ class FusesDataBase:
             tnom: Время срабатывания предохранителя.
 
         """
-        connection = sqlite3.connect('fuses_database.db')
+        connection = sqlite3.connect('databases/fuses_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'INSERT INTO fuses (type, inom, tnom) VALUES (?, ?, ?)',
@@ -267,7 +267,7 @@ class FusesDataBase:
 
     @staticmethod
     def get(fuse_type: str) -> tuple:
-        connection = sqlite3.connect('fuses_database.db')
+        connection = sqlite3.connect('databases/fuses_database.db')
         cursor = connection.cursor()
         fuse_res = cursor.execute(
             'SELECT type, inom, tnom FROM fuses WHERE type=?',
@@ -278,7 +278,7 @@ class FusesDataBase:
 
     @staticmethod
     def delete(fuse_type: str):
-        connection = sqlite3.connect('fuses_database.db')
+        connection = sqlite3.connect('databases/fuses_database.db')
         cursor = connection.cursor()
         cursor.execute(
             'DELETE FROM fuses WHERE type=?',
@@ -289,7 +289,7 @@ class FusesDataBase:
 
     @staticmethod
     def update(fuse_type: str, inom: float, tnom: float):
-        connection = sqlite3.connect('fuses_database.db')
+        connection = sqlite3.connect('databases/fuses_database.db')
         cursor = connection.cursor()
         cursor.execute("""
            UPDATE fuses
@@ -301,7 +301,7 @@ class FusesDataBase:
 
     @staticmethod
     def get_all() -> list:
-        connection = sqlite3.connect('fuses_database.db')
+        connection = sqlite3.connect('databases/fuses_database.db')
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM fuses')
         all_fuses = cursor.fetchall()
